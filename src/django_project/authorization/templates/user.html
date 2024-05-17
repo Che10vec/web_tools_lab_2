@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="section slider">
+    <h2>You are</h2>
+    {% if request.user.is_authenticated %}
+      <h3 class="sub-section">{{ request.user.username }}</h3>
+      <div class="under">
+        <div class="sub-section">
+          <p>Exit your account</p>
+          <form method="post">
+            {% csrf_token %}
+            <button name="button" value="Sign out">Sign out</button>
+          </form>
+        </div>
+        <div class="sub-section">
+          <p>Delete your account</p>
+          <form method="post">
+            {% csrf_token %}
+            <button name="button" value="Delete">Delete</button>
+          </form>
+        </div>
+      </div>
+    {% else %}
+      <h3 class="sub-section">not logged in</h3>
+      <div class="under">
+        <div class="sub-section">
+          <p>Enter into your account</p>
+          <button onclick="document.location.href='sign-in/'">Sign in</button>
+        </div>
+        <h4>or</h4>
+        <div class="sub-section">
+          <p>Create an account</p>
+          <button onclick="document.location.href='sign-up/'">Sign up</button>
+        </div>
+      </div>
+    {% endif %}
+    <button onclick="document.location.href='/'">Main page</button>
+  </div>
+{% endblock %}

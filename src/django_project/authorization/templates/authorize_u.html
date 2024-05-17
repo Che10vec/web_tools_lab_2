@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<form class="section" method='POST'>{% csrf_token %}
+    <h2>Sign in</h2>
+    {{form.as_div}}
+    
+    {% if message %}
+      <li class='errorlist'>{{message}}</li>
+    {% endif %}
+      
+    <button  type="submit">Enter</button>
+  </form>
+{% endblock %}
